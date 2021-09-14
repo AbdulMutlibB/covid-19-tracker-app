@@ -10,6 +10,11 @@ import "./App.css";
 import InfoBox from "./component/InfoBox/Index";
 import Map from "./component/Map/Index";
 import Table from "./component/Table/Index";
+import { sortData } from "./component/Util/Util";
+import Graph from './component/Graph/Index'
+
+
+
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -34,8 +39,9 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countriesss);
-          setTableData(data);
         });
     };
 
@@ -103,8 +109,10 @@ function App() {
           <CardContent>
             <h3>Live Cases By Country</h3>
             <Table countries={tableData} />
-            <h2>WorldWide new Cases</h2>
+            <h3>WorldWide New Cases</h3>
           </CardContent>
+          <Graph/>    
+
         </Card>
       </div>
     </div>
